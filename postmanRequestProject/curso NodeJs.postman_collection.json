@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "d6a66bfe-b0f6-4c3c-9d84-17dce90118c1",
+		"name": "curso NodeJs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get productos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "admin",
+								"value": "true",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Productos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "admin",
+								"value": "true",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"papel boligoma\",\r\n        \"description\":\"mira que lindo producto\",\r\n        \"timestamp\":\"1651621481714\",\r\n        \"price\": 200,\r\n        \"photo\": \"https://via.placeholder.com/15\",\r\n        \"stock\": 5\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Producto por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/productos/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "admin",
+								"value": "true",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/productos/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "admin",
+								"value": "true",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"boligoma\",\r\n        \"description\":\"mira que lindo producto\",\r\n        \"timestamp\":\"1651621481714\",\r\n        \"price\": 200,\r\n        \"photo\": \"https://via.placeholder.com/15\",\r\n        \"id\": 5,\r\n        \"stock\": 10\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Create Carrito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \r\n        \r\n        \"prods\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"Escuadra\",\r\n            \"description\":\"mira que lindo producto\",\r\n            \"timestamp\":\"1651621481714\",\r\n            \"price\": 123.45,\r\n            \"photo\": \"https://via.placeholder.com/15\",\r\n            \"stock\": 2\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"name\": \"calculadora\",\r\n            \"description\":\"mira que lindo producto\",\r\n            \"timestamp\":\"1651621481714\",\r\n            \"price\": 234.56,\r\n            \"photo\": \"https://via.placeholder.com/15\",\r\n            \"stock\": 3\r\n        },\r\n        {\r\n            \"id\": 5,\r\n            \"name\": \"calculadora agregada\",\r\n            \"description\":\"mira que lindo producto\",\r\n            \"timestamp\":\"1651621481714\",\r\n            \"price\": 234.56,\r\n            \"photo\": \"https://via.placeholder.com/15\",\r\n            \"stock\": 3\r\n        }]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/carrito",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Carrito",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carrito/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete prod in cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carrito/1/productos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"1",
+								"productos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ger prods in cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carrito/1/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"1",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add product to cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\":1,\r\n        \"name\": \"test\",\r\n        \"description\": \"mira que lindo producto\",\r\n        \"timestamp\": \"1651621481714\",\r\n        \"price\": 234.56,\r\n        \"photo\": \"https://via.placeholder.com/15\",\r\n        \"stock\": 3\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/carrito/1/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"1",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

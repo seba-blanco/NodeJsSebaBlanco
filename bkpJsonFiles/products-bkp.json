@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "name": "Escuadra",
+        "description":"mira que lindo producto",
+        "timestamp":"1651621481714",
+        "price": 123.45,
+        "photo": "https://via.placeholder.com/15",
+        "stock": 5
+    },
+    {
+        "id": 2,
+        "name": "calculadora",
+        "description":"mira que lindo producto",
+        "timestamp":"1651621481714",
+        "price": 234.56,
+        "photo": "https://via.placeholder.com/15",
+        "stock": 5
+    },
+    {
+        "id": 3,
+        "name": "Globo terraqueo",
+        "description":"mira que lindo producto",
+        "timestamp":"1651621481714",
+        "price": 345.67,
+        "photo": "https://via.placeholder.com/15",
+        "stock": 5
+    },
+    {
+        "name": "lapicera",
+        "description":"mira que lindo producto",
+        "timestamp":"1651621481714",
+        "price": 200,
+        "photo": "https://via.placeholder.com/15",
+        "id": 4,
+        "stock": 5
+    },
+    {
+        "name": "boligoma",
+        "description":"mira que lindo producto",
+        "timestamp":"1651621481714",
+        "price": 200,
+        "photo": "https://via.placeholder.com/15",
+        "id": 5,
+        "stock": 5
+    },
+    {
+        "name": "papel glase",
+        "description":"mira que lindo producto",
+        "timestamp":"1651621481714",
+        "price": 200,
+        "photo": "https://via.placeholder.com/15",
+        "id": 6,
+        "stock": 5
+    },
+    {
+        "name": "estatua de Peron",
+        "description":"mira que lindo producto",
+        "timestamp":"1651621481714",
+        "price": 200,
+        "photo": "https://via.placeholder.com/15",
+        "id": 7,
+        "stock": 5
+    }
+]
