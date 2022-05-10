@@ -1,10 +1,9 @@
-const { Console } = require('console');
 const fs = require('fs');
 const path = require('path');
 
 class Carrito {
     constructor() {
-        this.fileName = "carrito.json";
+        this.fileName = "./src/data/carrito.json";
         this.fileContent = [];
 
     }
@@ -12,7 +11,7 @@ class Carrito {
     readFile = async () => {
      const content =  await fs.promises.readFile(this.fileName,'utf-8')
         .then (contenido => { 
-            
+        
            return JSON.parse(contenido);
            
         })

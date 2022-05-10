@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 class contenedor {
-    constructor(fileName) {
-        this.fileName = fileName;
+    constructor() {
+        this.fileName = "./src/data/products.json";
         this.fileContent = [];
 
     }
