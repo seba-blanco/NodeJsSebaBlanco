@@ -28,6 +28,14 @@ class CartsDAOMongo extends MongoDBContainer{
         cart[0].prods.splice(index,1);
         await this.model.updateOne({id:id}, {prods: cart[0].prods})
     }
+
+    update = async (id, prod) => {
+        let cart = await this.model.find({id:id});
+        let index = cart[0].prods.findIndex(prod => prod.id == id_prod);
+        cart[0].prods.splice(index,1);
+        cart[0].prods.push(prod);
+        await this.model.updateOne({id:id}, {prods: cart[0].prods})
+    }
   
 
 } 

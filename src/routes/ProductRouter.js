@@ -6,14 +6,14 @@ const {Router} = express;
 // const archivo = new ProductsDAOFile();
 
 
-// const {ProductsDAOFirestore} = require("../DAOS/defaultDaos");
-// const archivo = new ProductsDAOFirestore();
+const {ProductsDAOFirestore} = require("../DAOS/defaultDaos");
+const archivo = new ProductsDAOFirestore();
 
 const SecurityMiddleware = require("../middlewares/securityMiddleware");
 const productsRouter = Router();
 
-const {ProductsDAOMongo} = require('../DAOS/products/ProductsDAOMongo');
-const archivo = new ProductsDAOMongo();
+// const {ProductsDAOMongo} = require('../DAOS/products/ProductsDAOMongo');
+// const archivo = new ProductsDAOMongo();
 
 // const { ProductsDAOFirestore } = require('../DAOS/products/ProductsDAOFirestore');
 // const archivo = new ProductsDAOFirestore()

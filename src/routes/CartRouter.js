@@ -5,11 +5,11 @@ const {Router} = express;
 // const {cartsDAOFile} = require("../DAOS/carts/cartsDAOFile");
 // const carrito = new cartsDAOFile();
 
-// const {CartsDAOFirestore} = require("../DAOS/carts/CartsDAOFirestore");
-// const carrito = new CartsDAOFirestore();
+const {CartsDAOFirestore} = require("../DAOS/carts/CartsDAOFirestore");
+const carrito = new CartsDAOFirestore();
 
-const {CartsDAOMongo} = require("../DAOS/carts/cartsDAOMongo");
-const carrito = new CartsDAOMongo();
+// const {CartsDAOMongo} = require("../DAOS/carts/cartsDAOMongo");
+// const carrito = new CartsDAOMongo();
 
 const SecurityMiddleware = require("../middlewares/securityMiddleware");
 
