@@ -1,22 +1,20 @@
 const fs = require('fs');
-const path = require('path');
 
-class contenedor {
-    constructor() {
-        this.fileName = "./src/data/products.json";
+class FileContainer {
+    constructor(filename) {
+        this.fileName = filename;
         this.fileContent = [];
 
     }
         
     readFile = async () => {
      const content =  await fs.promises.readFile(this.fileName,'utf-8')
-        .then (contenido => { 
-            
-           return JSON.parse(contenido);
-           
+        .then (contenido => {  
+           return JSON.parse(contenido);  
         })
         
         .catch(error => {
+            console.log(`error leyendo archivo ${this.fileName}`);
         })
         
         return content;
@@ -34,28 +32,22 @@ class contenedor {
     
 
     getAll = async () => {
-        console.log("entre al get all")
+        
         let datos = await this.readFile().then (prods=> { return prods});
         
         return datos;
     }
     
     getById =async (id) => {
-        console.log("entre al get by id")
         let datos = await this.readFile().then (prods=> {return prods});
-
-        console.log("esto es datos");
-        console.log(datos);
         return datos.filter(x=> x.id == id);
     }
     
     save =async (object) => {
-        console.log("datos get by id")
         let datos = await this.readFile().then (prods=> {return prods});
         console.log(datos)
         let maxId = Math.max(...datos.map(prod => prod.id), 0);
         object["id"] = maxId + 1;
-        object["timestamp"] = Date.now();
         datos.push(object);
        
         this.writeFile(datos);
@@ -94,10 +86,9 @@ class contenedor {
 
     
     deleteAll = async () => {
-        console.log("entre al delete all")
-        
+          
         this.writeFile([]);
     }
 }
 
-module.exports = contenedor;
+module.exports = {FileContainer};

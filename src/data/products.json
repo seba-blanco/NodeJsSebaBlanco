@@ -61,5 +61,14 @@
         "photo": "https://via.placeholder.com/15",
         "id": "1",
         "stock": 10
+    },
+    {
+        "name": "papel boligoma seba",
+        "description": "mira que lindo producto",
+        "timestamp": "1651621481714",
+        "price": 200,
+        "photo": "https://via.placeholder.com/15",
+        "stock": 5,
+        "id": 8
     }
 ]
