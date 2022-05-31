@@ -103,7 +103,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/api/productos/8",
+							"raw": "http://localhost:8080/api/productos/12",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -112,7 +112,7 @@
 							"path": [
 								"api",
 								"productos",
-								"8"
+								"12"
 							]
 						}
 					},
@@ -131,7 +131,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"name\": \"boligoma\",\r\n        \"description\":\"mira que lindo producto\",\r\n        \"timestamp\":\"1651621481714\",\r\n        \"price\": 200,\r\n        \"photo\": \"https://via.placeholder.com/15\",\r\n        \"id\": 5,\r\n        \"stock\": 10\r\n    }",
+							"raw": "{\r\n        \"name\": \"boligoma\",\r\n        \"description\":\"mira que lindo producto\",\r\n        \"timestamp\":\"1651621481714\",\r\n        \"price\": 200,\r\n        \"photo\": \"https://via.placeholder.com/15\",\r\n        \"id\": 2,\r\n        \"stock\": 7\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -139,7 +139,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/productos/1",
+							"raw": "http://localhost:8080/api/productos/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -148,9 +148,17 @@
 							"path": [
 								"api",
 								"productos",
-								"1"
+								"2"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert prods firestores",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -194,7 +202,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/carrito/3",
+							"raw": "http://localhost:8080/api/carrito/8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -203,7 +211,7 @@
 							"path": [
 								"api",
 								"carrito",
-								"3"
+								"8"
 							]
 						}
 					},
@@ -215,7 +223,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/carrito/1/productos/1",
+							"raw": "http://localhost:8080/api/carrito/9/productos/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -224,9 +232,9 @@
 							"path": [
 								"api",
 								"carrito",
-								"1",
+								"9",
 								"productos",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -279,6 +287,28 @@
 								"api",
 								"carrito",
 								"1",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all carritos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carrito/0/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carrito",
+								"0",
 								"productos"
 							]
 						}
