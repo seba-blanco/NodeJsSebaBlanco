@@ -4,8 +4,8 @@ const productModel = require('../../models/Products')
 class ProductsDAOMongo extends MongoDBContainer{
   constructor() {
     super(productModel);
-    this.id = 0
-    this.checkId()
+    this.id = 0;
+    this.checkId();
   }
 
   checkId = async () => {
@@ -13,7 +13,7 @@ class ProductsDAOMongo extends MongoDBContainer{
 
     if(products.length > 0) {
 
-      this.id = parseInt(products[products.length - 1].id) + 1
+      this.id = parseInt(Math.max(...products.map(prod => prod.id), 0)) + 1
     }
   }
   

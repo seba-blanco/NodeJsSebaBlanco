@@ -22,7 +22,7 @@ class FirestoreContainer {
 
   async save(document, id){
     let doc = this.collection.doc(`${id}`)
-    // console.log(document)
+    
     let item = await doc.create(document)
     return item
   }

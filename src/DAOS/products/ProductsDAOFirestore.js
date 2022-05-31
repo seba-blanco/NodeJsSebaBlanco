@@ -2,17 +2,18 @@ const {FirestoreContainer} = require ('../../containers/FirestoreContainer')
 
 class ProductsDAOFirestore extends FirestoreContainer {
     constructor(){
-        super('products')
-         this.id = 0
-         this.checkId()
+        super('products');
+         this.id = 0;
+         this.checkId();
       }
 
        checkId = async () => {
         let products = await this.getAll()
-    
+        
         if(products.length > 0) {
     
-          this.id = parseInt(products[products.length - 1].id) + 1
+          this.id = parseInt(Math.max(...products.map(prod => prod.id), 0)) + 1;
+         
         }
       }
 

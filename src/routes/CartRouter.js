@@ -2,14 +2,7 @@ const express = require('express');
 
 const {Router} = express;
 
-// const {cartsDAOFile} = require("../DAOS/carts/cartsDAOFile");
-// const carrito = new cartsDAOFile();
-
-const {CartsDAOFirestore} = require("../DAOS/carts/CartsDAOFirestore");
-const carrito = new CartsDAOFirestore();
-
-// const {CartsDAOMongo} = require("../DAOS/carts/cartsDAOMongo");
-// const carrito = new CartsDAOMongo();
+const {cartsDAO} = require("../DAOS/defaultDaos");
 
 const SecurityMiddleware = require("../middlewares/securityMiddleware");
 
@@ -24,10 +17,10 @@ cartRouter.get('/:id/productos',async (req,res) =>{
     
     if (req.params.id && req.params.id != 0) {
         const id = req.params.id;
-        car = await carrito.getById(id);
+        car = await cartsDAO.getById(id);
     }
     else {
-        car = await carrito.getAll();
+        car = await cartsDAO.getAll();
         
     }
 
@@ -39,7 +32,7 @@ cartRouter.get('/:id/productos',async (req,res) =>{
             res.json(car);
     }
     else {
-        res.json({errorMsg:'Carrito no encontrado'});
+        res.json({errorMsg:'cartsDAO no encontrado'});
     }
 });
 
@@ -48,7 +41,7 @@ cartRouter.get('/:id/productos',async (req,res) =>{
 cartRouter.delete("/:id", async (req, res) => {
     
     const id = req.params.id;
-    await(carrito.delete(id));
+    await(cartsDAO.delete(id));
    
     res.json({deletedId: id});
 })
@@ -57,7 +50,7 @@ cartRouter.delete("/:id/productos/:id_prod", async (req, res) => {
     
     const id = req.params.id;
     const id_prod = req.params.id_prod;
-    await(carrito.deleteProdInCart(id, id_prod));
+    await(cartsDAO.deleteProdInCart(id, id_prod));
    
     res.json({deletedId: id});
 })
@@ -65,13 +58,13 @@ cartRouter.delete("/:id/productos/:id_prod", async (req, res) => {
 
 cartRouter.post("/", async (req, res) => {
     
-    let newCarrito = await carrito.saveCart(req.body);
+    let newCarrito = await cartsDAO.saveCart(req.body);
     res.json({NewCarrito: newCarrito});
 })
 
 cartRouter.post("/:id/productos", async (req, res) => {
     
-    let updatedCarrito = await carrito.update(req.params.id, req.body);
+    let updatedCarrito = await cartsDAO.update(req.params.id, req.body);
     
     if (updatedCarrito)
         res.json({updatedCarrito: updatedCarrito});

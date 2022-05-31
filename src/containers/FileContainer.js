@@ -45,7 +45,7 @@ class FileContainer {
     
     save =async (object) => {
         let datos = await this.readFile().then (prods=> {return prods});
-        console.log(datos)
+        
         let maxId = Math.max(...datos.map(prod => prod.id), 0);
         object["id"] = maxId + 1;
         datos.push(object);

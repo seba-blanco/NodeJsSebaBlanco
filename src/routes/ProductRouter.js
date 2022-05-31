@@ -2,21 +2,12 @@ const express = require('express');
 
 const {Router} = express;
 
-// const {ProductsDAOFile} = require("../DAOS/products/ProductsDAOFile");
-// const archivo = new ProductsDAOFile();
-
-
-const {ProductsDAOFirestore} = require("../DAOS/defaultDaos");
-const archivo = new ProductsDAOFirestore();
+const {productsDAO} = require("../DAOS/defaultDaos");
+// const archivo = new ProductsDAOFirestore();
 
 const SecurityMiddleware = require("../middlewares/securityMiddleware");
 const productsRouter = Router();
 
-// const {ProductsDAOMongo} = require('../DAOS/products/ProductsDAOMongo');
-// const archivo = new ProductsDAOMongo();
-
-// const { ProductsDAOFirestore } = require('../DAOS/products/ProductsDAOFirestore');
-// const archivo = new ProductsDAOFirestore()
 
 productsRouter.get('/add/', async (req,res) => {
     //INSERT WITH MANUAL IDS
@@ -52,11 +43,10 @@ productsRouter.get('/:id?', async (req,res) =>{
     
     if (req.params.id) {
         const id = req.params.id;
-        prods = await archivo.getById(id);
+        prods = await productsDAO.getById(id);
     }
     else {
-        prods = await archivo.getAll();
-        console.log(prods);
+        prods = await productsDAO.getAll();
     }
    
     if (Object.entries(prods).length === 0) 
@@ -69,7 +59,7 @@ productsRouter.get('/:id?', async (req,res) =>{
 //add product to products.json
 productsRouter.post("/", SecurityMiddleware, async (req, res) => {
     
-    let newProduct = await archivo.saveProduct(req.body);
+    let newProduct = await productsDAO.saveProduct(req.body);
     res.json({newProduct: newProduct});
 })
 
@@ -77,7 +67,7 @@ productsRouter.post("/", SecurityMiddleware, async (req, res) => {
 //modify by ID
 productsRouter.put("/:id", SecurityMiddleware, async (req, res) => {
     const id = req.params.id;
-    let newProduct = await archivo.update(req.body, id);
+    let newProduct = await productsDAO.update(req.body, id);
    
     res.json({newProduct: newProduct});
 })
@@ -87,7 +77,7 @@ productsRouter.put("/:id", SecurityMiddleware, async (req, res) => {
 productsRouter.delete("/:id", SecurityMiddleware, async (req, res) => {
     
     const id = req.params.id;
-    await(archivo.delete(id));
+    await(productsDAO.delete(id));
    
     res.json({deletedId: id});
 });

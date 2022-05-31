@@ -9,11 +9,11 @@ class CartsDAOMongo extends MongoDBContainer{
   }
 
     checkId = async () => {
-        let products = await this.getAll()
+        let carts = await this.getAll()
 
-        if(products.length > 0) {
+        if(carts.length > 0) {
 
-        this.id = parseInt(products[products.length - 1].id) + 1
+        this.id = parseInt(Math.max(...carts.map(cart => cart.id), 0)) + 1
         }
     }
   
@@ -24,17 +24,25 @@ class CartsDAOMongo extends MongoDBContainer{
     
     deleteProdInCart = async (id, id_prod) => {
         let cart = await this.model.find({id:id});
-        let index = cart[0].prods.findIndex(prod => prod.id == id_prod);
-        cart[0].prods.splice(index,1);
-        await this.model.updateOne({id:id}, {prods: cart[0].prods})
+        console.log(cart);
+        if (cart.length>0) {
+            let index = cart[0].prods.findIndex(prod => prod.id == id_prod);
+            if (index > -1) {
+                cart[0].prods.splice(index,1);
+                await this.model.updateOne({id:id}, {prods: cart[0].prods})
+            }
+        }
     }
 
     update = async (id, prod) => {
         let cart = await this.model.find({id:id});
-        let index = cart[0].prods.findIndex(prod => prod.id == id_prod);
-        cart[0].prods.splice(index,1);
+        let index = cart[0].prods.findIndex(prod => prod.id == prod.id);
+        console.log(index);
+        if (index > 0) cart[0].prods.splice(index,1);
         cart[0].prods.push(prod);
         await this.model.updateOne({id:id}, {prods: cart[0].prods})
+
+        return cart;
     }
   
 

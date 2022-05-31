@@ -9,10 +9,10 @@ class CartsDAOFirestore extends FirestoreContainer {
 
        checkId = async () => {
         let carts = await this.getAll()
-    
+       
         if(carts.length > 0) {
     
-          this.id = parseInt(carts[carts.length - 1].id) + 1
+          this.id = parseInt(Math.max(...carts.map(cart => cart.id), 0)) + 1
         }
       }
    
@@ -38,10 +38,9 @@ class CartsDAOFirestore extends FirestoreContainer {
         let carrito = await cart.get();
         let cartData = carrito.data();
         
-        console.log(cartData);
-        
         let index = cartData.prods.findIndex(e => e.id == prod.id);
-        cartData.prods.splice(index, 1);
+        if (index > -1) cartData.prods.splice(index, 1);
+        
         cartData.prods.push(prod);
         await cart.update(cartData);
 

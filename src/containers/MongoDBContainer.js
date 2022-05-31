@@ -16,8 +16,7 @@ class MongoDBContainer {
 
    getAll = async() =>{
     let datos  = await this.model.find({});
-    console.log(this.model);
-    console.log(datos);
+   
     return datos;
   }
 
