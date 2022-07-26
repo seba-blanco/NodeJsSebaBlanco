@@ -12,6 +12,7 @@ const routerCarrito = require("./src/routes/CartRouter");
 const fs = require('fs');
 const path = require('path');
 
+app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
