@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    
+</head>
+<body class="container">
+    
+    <header>
+        <%- include('../partials/headers'); %>
+    </header>
+    
+    <!-- <main> -->
+        <div class="">
+            <h1>entrega 6</h1>
+            <p><b>Bienveido: <%= UserLogged %></b></p> 
+            <div id="divUser">
+
+            </div>
+            
+            
+
+            <%- include('../partials/addProduct'); %>
+
+            
+        </div>
+        <div>
+           
+            <div id="lstProducts">
+                <h1>products</h1>
+                <table id="tableProd" class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Image</th>
+                      </tr>
+                    </thead>
+                    <tbody id="productBody">
+
+                    </tbody>
+                </table>
+    
+              
+            </div>
+        </div>
+
+        <div  class="">
+            <h1>Chat</h1>
+            
+            
+
+            <%- include('../partials/addMessage'); %>
+
+            
+        </div>
+
+        <div id="lstMsgs">
+            <h4>TEST</h4>
+        </div>
+    <!-- </main> -->
+    <%- include('../partials/footers'); %>
+
+    <script src="./main.js"></script>
+ 
+</body>
+</html>

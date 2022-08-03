@@ -1,14 +1,15 @@
-function SecurityMiddleware(req,res,next) {
+function ValidateLogin(req,res,next) {
     
-    let admin = req.headers.admin;
-
-    if(admin) {
+    if (req.isAuthenticated()) {
         next();
-    } else {
-        res.json({error: -1, descripcion:`ruta ${req.originalUrl}  y metodo ${req.method}  no permitidos`});
+    }
+    else {
+        console.log('no logueado');
+        res.redirect('/login');
     }
 
-    //next();
 };
 
-module.exports = SecurityMiddleware;
+
+
+module.exports = ValidateLogin;

@@ -1,0 +1,21 @@
+
+<%if (productos) { %>
+
+    <% productos.forEach(function(prod) { %>
+
+    <div className='d-flex d-row'>
+                                            
+        <div>
+            <span className="title">Nombre:<%= prod.title %></span>
+            
+            <p><b>Price: <%= prod.price %></b></p> 
+            
+        </div>
+                
+    </div>   
+    <% }); %>  
+
+<% } %>
+<!-- <form  action="/" >
+    <input type="submit" value="create product">
+</form> -->

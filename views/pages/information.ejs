@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/socket.io/socket.io.js"></script>
+    
+</head>
+<body class="container">
+    
+    <p><b>plataform: <%= info.plataform %></b></p> 
+    <p><b>nodeVersion: <%= info.nodeVersion %></b></p> 
+    <p><b>memoryUsage: <%= info.memoryUsage %></b></p>
+    <p><b>cwd: <%= info.cwd %></b></p>
+    <p><b>pID: <%= info.pID %></b></p>
+    <p><b>folder: <%= info.folder %></b></p>
+    <p><b>procesadores: <%= info.procesadores %></b></p>
+    
+    PARAMETERS
+    <% info['args'].forEach(function(param) { %>
+        <p><b><%= param %></b></p>
+       
+    <% }); %>  
+    
+
+ 
+</body>
+</html>
