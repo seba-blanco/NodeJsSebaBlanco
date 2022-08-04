@@ -11,7 +11,7 @@ const path = require('path');
 const { EXPIRATION_TIME } = require('./src/config/global')
 const passport = require('passport');
 const log4js = require("log4js");
-const {sendNewUserMail} = require('./src/utils/mailManager')
+const {sendNewUserMail, sendNewOperationMail} = require('./src/utils/mailManager')
 const {sendWhatsapp} = require('./src/utils/whatsappManager')
 const {validatePass} = require('./src/utils/passValidator');
 const {createHash} = require('./src/utils/hashGenerator')
@@ -149,8 +149,6 @@ passport.use('signup', new LocalStrategy(
             
                 sendNewUserMail(userWithId);
                 
-                console.log('Registro de usuario satisfactoria');
-
                 return callback(null, userWithId)
             })
         })
@@ -203,6 +201,7 @@ app.get('/welcome', ValidateLogin, async (req, res) =>{
     const cart = fakeCart( req.user.id);
 
     await cartsDAO.saveCart(cart);
+    await sendNewOperationMail(req.user, cart.prods);
     await sendWhatsapp(cart.prods, req.user);
 
     res.render('pages/welcome', {Carrito:cart, UserLogged: req.user} )

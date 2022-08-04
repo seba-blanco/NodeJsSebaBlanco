@@ -28,7 +28,21 @@ sendMail  = async (subject, emailTO, mailBody ) => {
         console.log(err);
     }
 }
+sendNewOperationMail = async (user, prods) => {
+    
+    let subject=`nuevo pedido de: ${user.username}`;
+        
+    let data = prods.map((elem, index) => {
+        return (`<p><b>producto: ${elem.name}</b></p>`)
+    });
 
+    console.log(subject);
+    console.log(data);
+
+
+    await sendMail(subject, MAILADMIN, data.toString());
+ 
+}
 sendNewUserMail =async (newUser) => {
     let HTML = `Se registro un nuevo usuario: 
     <p><b>Username: ${newUser.username}</b></p> 
@@ -44,4 +58,4 @@ sendNewUserMail =async (newUser) => {
  
 }
 
-module.exports = {sendNewUserMail}
+module.exports = {sendNewUserMail, sendNewOperationMail}

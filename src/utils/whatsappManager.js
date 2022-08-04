@@ -1,8 +1,8 @@
 const twilio = require('twilio');
-const { WHATSFROM } = require('../config/global')
+const { WHATSFROM, TWILIOACCOUNT_SID, TWILIOAUTH_TOKEN } = require('../config/global')
 
-const ACCOUNT_SID = 'AC02519b1c86db16835cd4dfb299c085f1';
-const AUTH_TOKEN = '6cae0620315d238ba947fd0c54616def'
+const ACCOUNT_SID = TWILIOACCOUNT_SID;
+const AUTH_TOKEN = TWILIOAUTH_TOKEN
 
 
 const client = twilio(ACCOUNT_SID, AUTH_TOKEN);
