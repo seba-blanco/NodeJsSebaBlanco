@@ -66,8 +66,6 @@ app.set('view engine', 'ejs');
 
 const PORT = parseInt(process.argv[2]) || 8080;
 const SERVER_MODE = args['SERVER_MODE'];
-console.log(`server mode: ${SERVER_MODE}`);
-console.log(`port: ${PORT}`);
 
 
 if (SERVER_MODE =='FORK') {
