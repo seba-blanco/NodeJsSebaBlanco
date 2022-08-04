@@ -11,12 +11,15 @@ const path = require('path');
 const { EXPIRATION_TIME } = require('./src/config/global')
 const passport = require('passport');
 const log4js = require("log4js");
-// const {sendNewUserMail} = require('./src/utils/mailManager')
-
-
-const ValidateLogin = require('./src/middlewares/securityMiddleware');
+const {sendNewUserMail} = require('./src/utils/mailManager')
+const {sendWhatsapp} = require('./src/utils/whatsappManager')
 const {validatePass} = require('./src/utils/passValidator');
 const {createHash} = require('./src/utils/hashGenerator')
+const {fakeCart} = require('./src/utils/fakeCart')
+
+const ValidateLogin = require('./src/middlewares/securityMiddleware');
+
+const {cartsDAO} = require("./src/DAOS/defaultDaos");
 
 const parseArgs = require('minimist');
 const options = {default:{PORT:8080, SERVER_MODE:'FORK'}};
@@ -26,9 +29,10 @@ console.log(`el puerto: ${process.argv[2]}`);
 const args = parseArgs(process.argv.slice(2), options);
 
 const app = express();
-// const routerProducts = require("./src/routes/ProductRouter");
-// const routerCarrito = require("./src/routes/CartRouter");
+const routerProducts = require("./src/routes/ProductRouter");
+const routerCarrito = require("./src/routes/CartRouter");
 const logInRouter = require('./src/routes/logInRouter');
+const { json } = require('express');
 
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -54,8 +58,8 @@ app.use(passport.session())
 
 
 
-// app.use("/api/productos", routerProducts);
-// app.use("/api/carrito", routerCarrito);
+app.use("/api/productos", routerProducts);
+app.use("/api/carrito", routerCarrito);
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs');
@@ -113,7 +117,7 @@ passport.use('signup', new LocalStrategy(
     {passReqToCallback: true}, (req, username, password, callback) => {
         console.log(req.body);
         console.log(username);
-         usersDB.findOne({ username: username }, (err, user) => {
+        usersDB.findOne({ username: username }, (err, user) => {
             if (err) {
                 console.log('Hay un error al registrarse');
                 return callback(err)
@@ -132,23 +136,19 @@ passport.use('signup', new LocalStrategy(
                 email: req.body.email,
                 username: username,
                 age:req.body.age,
-                address:req.body,address,
+                address:req.body.address,
                 cellphone:req.body.cellphone,
-                imgAvatar:'AVATAR',
                 password: createHash(password)
             }
 
-            console.log(newUser);
-
-
-                usersDB.create(newUser, (err, userWithId) => {
+            usersDB.create(newUser, (err, userWithId) => {
                 if (err) {
-                    console.log('Hay un error al registrarse');
-                    return callback(err)
+                console.log('Hay un error al registrarse');
+                return callback(err)
                 }
+            
+                sendNewUserMail(userWithId);
                 
-                //sendNewUserMail(userWithId);
-                console.log(userWithId);
                 console.log('Registro de usuario satisfactoria');
 
                 return callback(null, userWithId)
@@ -187,17 +187,24 @@ app.get('/failsignup', (req, res) => {
     res.send('no pudimos crear su usuario')
 });
 
-app.get('/', ValidateLogin, (req,res) =>{
- 
-    res.render('pages/index', {UserLogged: req.user.firstName});  
+app.get('/', ValidateLogin, async (req,res) =>{
+    console.log(req.user);
+    
+    let cart = await cartsDAO.getCartForUser(req.user.id);
+    console.log(cart);
+    res.render('pages/index', {UserLogged: req.user, Carrito: cart});  
 
 })
 
 app.get('/logout',ValidateLogin, logInRouter.getLogout);
 
-// const server =app.listen(PORT, () => {
 
-//     console.log(`servidor http escuchando en el puerto ${server.address().port} `)
-// })
+app.get('/welcome', ValidateLogin, async (req, res) =>{
+    const cart = fakeCart( req.user.id);
 
-// server.on("error", error => console.log(`Error en servidor ${error}`));
+    await cartsDAO.saveCart(cart);
+    await sendWhatsapp(cart.prods, req.user);
+
+    res.render('pages/welcome', {Carrito:cart, UserLogged: req.user} )
+});
+

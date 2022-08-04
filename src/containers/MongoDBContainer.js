@@ -2,7 +2,6 @@
 
 const mongoose = require('mongoose')
 const { MONGO_URI } = require('../config/global');
-const { update } = require('../models/Products');
 
 class MongoDBContainer {
   constructor(model) {
@@ -36,7 +35,6 @@ class MongoDBContainer {
 
    save = async (prod, id) => {
        prod['id'] = id;
-       console.log(prod);
        return await this.model.create(prod);
    }
 

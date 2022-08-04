@@ -44,6 +44,12 @@ class CartsDAOMongo extends MongoDBContainer{
 
         return cart;
     }
+
+    getCartForUser = async(idUser) => {
+        let cart = await this.model.findOne({userID: idUser});
+        return cart;
+    }
+    
   
 
 } 

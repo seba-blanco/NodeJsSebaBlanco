@@ -1,6 +1,5 @@
 const NM = require('nodemailer');
 const { MAILADMIN, MAILFROM } = require('../config/global')
-// const MAILFROM = process.env.MAILFROM || 'sope.blanco@gmail.com';
 const log4ejs = require('log4js');
 
 
@@ -34,14 +33,14 @@ sendNewUserMail =async (newUser) => {
     let HTML = `Se registro un nuevo usuario: 
     <p><b>Username: ${newUser.username}</b></p> 
     <p><b>First Name: ${newUser.firstName} </b></p> 
-    <p><b>Last Name: ${newUserlastName} </b></p>
+    <p><b>Last Name: ${newUser.lastName} </b></p>
     <p><b>address: ${newUser.address}</b></p>
     <p><b>age: ${newUser.age} </b></p>
     <p><b>cellphone: ${newUser.cellphone} </b></p>
     <p><b>email: ${newUser.email}<</b></p>`;
 
 
-    await sendMail(MAILFROM, MAILADMIN, 'Nuevo Registro');
+    await sendMail('Nuevo Registro', MAILADMIN, HTML);
  
 }
 

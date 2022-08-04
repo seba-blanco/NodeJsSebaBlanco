@@ -12,35 +12,16 @@
     
     <!-- <main> -->
         <div class="">
-            <h1>entrega 6</h1>
-            <p><b>Bienveido: <%= UserLogged.firstName %> <%= UserLogged.lastName %></b></p> 
+            <p><b>gracias por tu pedido: <%= UserLogged.firstName %> <%= UserLogged.lastName %></b></p> 
             <div id="divUser">
 
             </div>
-            <form action="/logout">    
-                <input type="submit" value="Log Out">
-            </form>
-            
-            
-
-            
-
-            
-        </div>
-        <div>
-            <p><b>Username:<%= UserLogged.username %></b></p> 
-            <p><b>First Name:<%= UserLogged.firstName %> </b></p> 
-            <p><b>Last Name:<%= UserLogged.lastName %> </b></p>
-            <p><b>address:<%= UserLogged.address %></b></p>
-            <p><b>age:<%= UserLogged.age %> </b></p>
-            <p><b>cellphone:<%= UserLogged.cellphone %> </b></p>
-            <p><b>email:<%= UserLogged.email %></b></p>
-            
+        
         </div>
 
         <div>
           
-          <h3>ultimos productos en su carrito</h3>  
+          <h3>tu pedido</h3>  
 
           <% Carrito.prods.forEach(function(prod) { %>
 

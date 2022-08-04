@@ -83,7 +83,7 @@ function postLogin (req, res) {
 
 function postSignup (req, res) {
     if (req.isAuthenticated()) {
-        res.redirect('/')
+        res.redirect('/welcome')
     } else {
         res.redirect('login')
     }

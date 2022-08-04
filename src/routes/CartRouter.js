@@ -57,7 +57,6 @@ cartRouter.delete("/:id/productos/:id_prod", async (req, res) => {
 
 
 cartRouter.post("/", async (req, res) => {
-    
     let newCarrito = await cartsDAO.saveCart(req.body);
     res.json({NewCarrito: newCarrito});
 })

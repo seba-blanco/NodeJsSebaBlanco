@@ -23,11 +23,12 @@
     "log4js": "^6.6.0",
     "minimist": "^1.2.6",
     "moment": "^2.29.3",
-    "mongoose": "6.3.4",
+    "mongoose": "^5.13.14",
     "nodemailer": "^6.7.7",
     "normalizr": "^3.6.2",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "twilio": "^3.80.0"
   }
 }

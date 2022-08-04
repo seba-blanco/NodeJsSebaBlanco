@@ -6,5 +6,6 @@ module.exports = {
   DEFAULTSTORE:process.env.DEFAULTSTORE,
   EXPIRATION_TIME: process.env.EXPIRATION_TIME || 30000,
   MAILADMIN:process.env.MAILADMIN,
-  MAILFROM:process.env.MAILFROM
+  MAILFROM:process.env.MAILFROM,
+  WHATSFROM:process.env.WHATSFROM
 }
